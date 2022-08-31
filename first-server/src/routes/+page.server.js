@@ -26,6 +26,7 @@ export async function POST() {
     // taggen på hemsidan.
 
     return {
+        status: 200,
         errors: {
             test: "asd",
             kalle: "tjena"
