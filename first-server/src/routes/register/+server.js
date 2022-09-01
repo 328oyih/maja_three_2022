@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { error, json } from '@sveltejs/kit';
 import { parse } from 'cookie';
 
@@ -12,10 +13,19 @@ export async function POST({ request }) {
     const db = client.db("test"); // select test db
     const collection = db.collection("users");  // select users collection
 
+    // Check if password and username has been sent
+    // else throw error with text describing whats wrong
+
+    // Does the username already exist?
+
+    // Is the password too simple?
+
+
+
     if (req) {
         // TODO: Dont just create the account. Validate that the user sent proper stuff
         // The user doesnt already exist & passwords are provided.
-        collection.insertOne(req)
+        collection.insertOne({ "username": "kalle", "password": "majarox" })
     }
 
     const body = { "register - post": "123" }
@@ -40,8 +50,13 @@ export async function DELETE({ request }) {
 
     const body = { "register - delete": "123" }
 
+    // does a cookie exist for the user id?
+    // in other words, is the user signed in?
+    
+    // delete account connected to the session cookie.
 
 
 
     return json(body);
 }
+>>>>>>> 78c8fbddfd63413d4572c7f3ba09655896cc2f67
