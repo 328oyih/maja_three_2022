@@ -15,7 +15,7 @@ export async function POST({ request }) {
     if (req) {
         // TODO: Dont just create the account. Validate that the user sent proper stuff
         // The user doesnt already exist & passwords are provided.
-        collection.insertOne({ "username": "kalle", "password": "majarox" })
+        collection.insertOne(req)
     }
 
     const body = { "register - post": "123" }
