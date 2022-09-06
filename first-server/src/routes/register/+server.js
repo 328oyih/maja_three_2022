@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { error, json } from '@sveltejs/kit';
 import { parse } from 'cookie';
 
@@ -15,7 +14,7 @@ export async function POST({ request }) {
 
     // Check if password and username has been sent
     // else throw error with text describing whats wrong
-
+   
     // Does the username already exist?
 
     // Is the password too simple?
@@ -59,4 +58,3 @@ export async function DELETE({ request }) {
 
     return json(body);
 }
->>>>>>> 78c8fbddfd63413d4572c7f3ba09655896cc2f67

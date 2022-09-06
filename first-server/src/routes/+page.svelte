@@ -16,6 +16,9 @@
 <p>
     {data.number}
 </p>
+<p>
+    {data.number-1}
+</p>
 
 <form method="POST">
     <button>CLICK ME</button>
@@ -23,3 +26,5 @@
         <p>{errors.password}</p>
     {/if}
 </form>
+
+<button>REEEEEEEEEEEEEEEEEEEEEEEE</button>
