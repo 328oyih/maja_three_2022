@@ -3,10 +3,22 @@ import { parse } from 'cookie';
 
 import * as database from '$lib/database.js';
 
+let registered = false;
 
-/** @type {import('./$types').RequestHandler} */
+/** @type {import('./$types').PageServerLoad} */
+export function load() {
+    return {
+        registered
+    };
+}
+
+
+/** @type {import('./$types').Action} */
 export async function POST({ request }) {
-    const req = await request.json();
+    const req = await request.formData();
+
+    const username = req.get("username")
+    const password = req.get("password")
 
     const client = await database.connect(); // Connect to the mongoDB
     const db = client.db("test"); // select test db
@@ -14,12 +26,14 @@ export async function POST({ request }) {
 
     // Check if password and username has been sent
     // else throw error with text describing whats wrong
-   
+
     // Does the username already exist?
 
     // Is the password too simple?
 
 
+
+    registered = true;
 
     if (req) {
         // TODO: Dont just create the account. Validate that the user sent proper stuff
@@ -33,11 +47,14 @@ export async function POST({ request }) {
 
     console.log(cookies)
 
-
-    return json(body);
+    return {
+        errors: {
+            message: "something wong"
+        }
+    }
 }
 
-/** @type {import('./$types').RequestHandler} */
+/** @type {import('./$types').Action} */
 export async function DELETE({ request }) {
 
     const cookies = parse(request.headers.get('cookie') || '');
@@ -51,10 +68,8 @@ export async function DELETE({ request }) {
 
     // does a cookie exist for the user id?
     // in other words, is the user signed in?
-    
+
     // delete account connected to the session cookie.
 
 
-
-    return json(body);
 }
