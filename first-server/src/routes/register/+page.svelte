@@ -3,14 +3,14 @@
     export let data;
 
     /**
-     * @type {import('./$types').Errors}
+     * @type any
      */
     export let errors;
 </script>
 
 <h1>Registration page</h1>
 
-<h2>Registration status: {data?.registered ? "Registered" : "Pending"}</h2>
+<h2>Registration status: {data?.registered ? "Registered" : "Not registered"}</h2>
 
 <form method="POST">
     <input type="text" name="username" id="" />

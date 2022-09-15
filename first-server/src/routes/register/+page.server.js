@@ -15,10 +15,10 @@ export function load() {
 
 /** @type {import('./$types').Action} */
 export async function POST({ request }) {
-    const req = await request.formData();
+    const formdata = await request.formData();
 
-    const username = req.get("username")
-    const password = req.get("password")
+    const username = formdata.get("username")
+    const password = formdata.get("password")
 
     const client = await database.connect(); // Connect to the mongoDB
     const db = client.db("test"); // select test db
@@ -27,31 +27,34 @@ export async function POST({ request }) {
     // Check if password and username has been sent
     // else throw error with text describing whats wrong
 
+
     // Does the username already exist?
+   
+    if (!await collection.findOne({username})){
+        collection.insertOne({ username, password})
+    } else {
+        return {
+            errors: {message:"Username already exists bozo "}
+        }
+    }
+    
+
 
     // Is the password too simple?
 
 
-
-    registered = true;
-
-    if (req) {
         // TODO: Dont just create the account. Validate that the user sent proper stuff
         // The user doesnt already exist & passwords are provided.
-        collection.insertOne({ "username": "kalle", "password": "majarox" })
-    }
+    collection.insertOne({username,password})
 
-    const body = { "register - post": "123" }
-
-    const cookies = parse(request.headers.get('cookie') || '');
-
-    console.log(cookies)
-
+    registered = true
+    
+  /*   
     return {
         errors: {
-            message: "something wong"
+            message: "something bing chilling"
         }
-    }
+    } */
 }
 
 /** @type {import('./$types').Action} */
