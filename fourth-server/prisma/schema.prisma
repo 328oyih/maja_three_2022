@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int    @id @default(autoincrement())
+  username       String @unique
+  salt           String
+  hash           String
+  password       String
+  clicker        Clicker?
+  session        String @unique
+}
+model Clicker {
+  id             Int    @id @default(autoincrement())
+  author User           @relation(fields:[authorId], references: [id])
+  authorId       Int    @unique
+  passive        Float
+  count          Float
+  cookiesonclick Float
+  upgrades       Upgrades[] 
+  totalclicks    Float? 
+}
+
+model Upgrades {
+  id             Int    @id @default(autoincrement())
+  level          Float  @default(1)
+  clicker Clicker       @relation(fields:[clickerId], references: [id])
+  clickerId      Int    @unique
+  cost           Float
+}

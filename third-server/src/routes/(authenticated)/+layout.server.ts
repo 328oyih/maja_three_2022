@@ -3,13 +3,17 @@ import { redirect } from '@sveltejs/kit';
 
 
 export const load: LayoutServerLoad = async ({ locals, cookies }) => {
-
-    if (locals.userid) {
-        return {
-            userid: locals.userid,
-        }
-    } else {
-        throw redirect(302, '/login')
+    if(!cookies.get("session")) {
+        throw redirect (300, "/login")
     }
 
+
+
+
 }
+
+
+
+
+
+

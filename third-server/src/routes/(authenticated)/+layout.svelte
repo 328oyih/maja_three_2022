@@ -2,16 +2,31 @@
     import type { LayoutServerData } from "./$types";
     export let data: LayoutServerData;
 </script>
+<body>
+    <nav>
+        <a href="/"class="link"> Home</a>
+    
+        <a href="/settings"class="link">Settings</a>
+    
+        <a href="/info"class="link">Info</a>
+    
+        <a href="/support"class="link">Support</a>
+    </nav>
+    
+</body>
 
-<nav>
-    <a href="/">Home</a>
-
-    <a href="/settings">Settings</a>
-
-    <a href="/info">Info</a>
-
-    <a href="/support">Support</a>
-</nav>
-<p>{data?.userid}</p>
 
 <slot />
+
+<style>
+
+
+    .link {
+        color: blueviolet;
+    }
+
+    .link:visited {
+        color: blueviolet;
+    }
+
+</style>
